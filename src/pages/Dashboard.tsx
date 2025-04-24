@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getCompetitions, getModalities, getTeams } from "@/services/mockDataService";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/services/navigationService";
+import { BarChart, Users, Award, Medal } from "lucide-react";
 
 const Dashboard = () => {
   const competitions = getCompetitions();
@@ -116,18 +117,42 @@ const Dashboard = () => {
             
             <Card>
               <CardHeader>
-                <CardTitle>Registro de Pontuação</CardTitle>
+                <CardTitle>Recursos Rápidos</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  Utilize o sistema de pontuação para registrar os resultados das equipes em cada rodada.
-                </p>
-                <Link 
-                  to={ROUTES.SCORING}
-                  className="bg-ifba-blue hover:bg-blue-700 text-white py-2 px-4 rounded inline-block"
-                >
-                  Inserir Pontuações
-                </Link>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Link 
+                    to={ROUTES.SCORING}
+                    className="bg-ifba-blue hover:bg-blue-700 text-white py-2 px-4 rounded inline-flex items-center"
+                  >
+                    <Medal className="mr-2 h-4 w-4" />
+                    Inserir Pontuações
+                  </Link>
+                  
+                  <Link 
+                    to={ROUTES.STATISTICS}
+                    className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded inline-flex items-center"
+                  >
+                    <BarChart className="mr-2 h-4 w-4" />
+                    Ver Estatísticas
+                  </Link>
+                  
+                  <Link 
+                    to={ROUTES.TEAMS}
+                    className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded inline-flex items-center"
+                  >
+                    <Users className="mr-2 h-4 w-4" />
+                    Gerenciar Equipes
+                  </Link>
+                  
+                  <Link 
+                    to={ROUTES.SCOREBOARD}
+                    className="bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded inline-flex items-center"
+                  >
+                    <Award className="mr-2 h-4 w-4" />
+                    Placar Público
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </div>

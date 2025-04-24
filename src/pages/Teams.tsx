@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import PageLayout from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,10 +28,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getModalities, getTeams, addTeam, deleteTeam } from "@/services/mockDataService";
+import {
+  getModalities,
+  getTeams,
+  addTeam,
+  deleteTeam
+} from "@/services/mockDataService";
 import { Team, Modality } from "@/types/models";
 import { toast } from "@/hooks/use-toast";
-import { Plus, Trash } from "lucide-react";
+import { Plus, Trash, Eye } from "lucide-react";
 
 const Teams = () => {
   const [teams, setTeams] = useState<Team[]>(getTeams());
@@ -151,7 +157,7 @@ const Teams = () => {
                 <TableHead>Instituição</TableHead>
                 <TableHead>Modalidade</TableHead>
                 <TableHead>Membros</TableHead>
-                <TableHead className="w-[100px]">Ações</TableHead>
+                <TableHead className="w-[160px]">Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -163,14 +169,25 @@ const Teams = () => {
                     <TableCell>{getModalityName(team.modalityId)}</TableCell>
                     <TableCell>{team.members.join(", ")}</TableCell>
                     <TableCell>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-8 w-8 p-0 text-red-500"
-                        onClick={() => handleDeleteTeam(team.id)}
-                      >
-                        <Trash className="h-4 w-4" />
-                      </Button>
+                      <div className="flex space-x-2">
+                        <Link to={`/teams/${team.id}`}>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="h-8 w-8 p-0 text-ifba-blue"
+                          >
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </Link>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="h-8 w-8 p-0 text-red-500"
+                          onClick={() => handleDeleteTeam(team.id)}
+                        >
+                          <Trash className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))

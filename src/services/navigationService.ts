@@ -6,7 +6,8 @@ export const ROUTES = {
   TEAMS: "/teams",
   MODALITIES: "/modalities",
   SCOREBOARD: "/scoreboard",
-  SCORING: "/scoring"
+  SCORING: "/scoring",
+  STATISTICS: "/statistics"
 };
 
 // Define navigation items for the sidebar
@@ -35,5 +36,10 @@ export const NAVIGATION_ITEMS = [
     name: "Placar Público",
     path: ROUTES.SCOREBOARD,
     icon: "monitor"
+  },
+  {
+    name: "Estatísticas",
+    path: ROUTES.STATISTICS,
+    icon: "bar-chart"
   }
 ];
