@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        ifba: {
+          blue: '#0057A8',
+          green: '#00A859',
+          red: '#ED1C24',
+          gray: '#58595B'
+        },
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,12 +91,21 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+        'score-pulse': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
+        },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+        'score-pulse': 'score-pulse 0.5s ease-in-out'
+			},
+      fontFamily: {
+        'roboto': ['Roboto', 'sans-serif'],
+        'robotics': ['Orbitron', 'sans-serif'],
+      }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
