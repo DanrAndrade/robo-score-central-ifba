@@ -1,6 +1,6 @@
 
 import { useRef } from 'react';
-import { toPDF } from 'react-to-pdf';
+import ReactToPdf from 'react-to-pdf';
 import { toast } from './use-toast';
 
 export const useToPdf = (fileName: string = 'documento') => {
@@ -8,7 +8,7 @@ export const useToPdf = (fileName: string = 'documento') => {
   
   const toPdf = () => {
     if (targetRef.current) {
-      toPDF(targetRef, {
+      ReactToPdf(targetRef, {
         filename: `${fileName}-${new Date().toISOString().split('T')[0]}.pdf`,
         page: {
           margin: 15
