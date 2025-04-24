@@ -21,7 +21,7 @@ export interface Competition {
   id: string;
   name: string;
   date: Date;
-  modalities: Modality[];
+  modalities: string[]; // Changed from Modality[] to string[] (modality IDs)
   active: boolean;
 }
 

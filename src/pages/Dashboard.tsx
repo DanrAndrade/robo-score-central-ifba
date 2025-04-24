@@ -9,8 +9,15 @@ import { ROUTES } from "@/services/navigationService";
 const Dashboard = () => {
   const competitions = getCompetitions();
   const activeCompetition = competitions.find(comp => comp.active);
-  const modalities = getModalities();
+  const allModalities = getModalities();
   const teams = getTeams();
+  
+  // Get actual modality objects from their IDs
+  const competitionModalities = activeCompetition
+    ? allModalities.filter(modality => 
+        activeCompetition.modalities.includes(modality.id)
+      )
+    : [];
 
   return (
     <PageLayout>
@@ -38,7 +45,7 @@ const Dashboard = () => {
                 <CardTitle className="text-lg font-medium">Modalidades</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold">{modalities.length}</div>
+                <div className="text-3xl font-bold">{competitionModalities.length}</div>
                 <div className="mt-2">
                   <Link 
                     to={ROUTES.MODALITIES}
@@ -92,7 +99,7 @@ const Dashboard = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  {modalities.map(modality => (
+                  {competitionModalities.map(modality => (
                     <li key={modality.id} className="border-b pb-2">
                       <div className="font-medium">{modality.name}</div>
                       <div className="text-sm text-muted-foreground">
