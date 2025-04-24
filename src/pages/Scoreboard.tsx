@@ -1,5 +1,7 @@
-
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -25,30 +27,24 @@ const Scoreboard = () => {
   const [teamScores, setTeamScores] = useState<TeamScore[]>([]);
   const [selectedModality, setSelectedModality] = useState<Modality | null>(null);
   
-  // Auto-refresh interval (5 seconds)
   const REFRESH_INTERVAL = 5000;
 
-  // Load modalities
   useEffect(() => {
     setModalities(getModalities());
-    // Set the first modality as default if available
     if (modalities.length > 0 && !selectedModalityId) {
       setSelectedModalityId(modalities[0].id);
     }
   }, []);
 
-  // Load team scores when modality changes or on refresh interval
   useEffect(() => {
     if (selectedModalityId) {
       const modality = modalities.find(m => m.id === selectedModalityId);
       setSelectedModality(modality || null);
       
-      // Load scores
       const scores = getTeamScores(selectedModalityId);
       setTeamScores(scores);
     }
     
-    // Set up auto-refresh
     const intervalId = setInterval(() => {
       if (selectedModalityId) {
         const scores = getTeamScores(selectedModalityId);
@@ -73,9 +69,17 @@ const Scoreboard = () => {
       <div className="bg-ifba-blue text-white py-6 shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-            <div>
-              <h1 className="text-3xl font-robotics font-bold">RoboScore Central</h1>
-              <p className="text-lg">Placar da Competição de Robótica IFBA</p>
+            <div className="flex items-center gap-4">
+              <Link to="/">
+                <Button variant="ghost" className="text-white hover:bg-white/20">
+                  <ArrowLeft className="mr-2 h-5 w-5" />
+                  Voltar
+                </Button>
+              </Link>
+              <div>
+                <h1 className="text-3xl font-robotics font-bold">RoboScore Central</h1>
+                <p className="text-lg">Placar da Competição de Robótica IFBA</p>
+              </div>
             </div>
             
             <div className="mt-4 md:mt-0 w-full md:w-auto">

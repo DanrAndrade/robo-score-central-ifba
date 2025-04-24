@@ -1,4 +1,3 @@
-
 // Define the application routes
 export const ROUTES = {
   HOME: "/",
@@ -7,7 +6,8 @@ export const ROUTES = {
   MODALITIES: "/modalities",
   SCOREBOARD: "/scoreboard",
   SCORING: "/scoring",
-  STATISTICS: "/statistics"
+  STATISTICS: "/statistics",
+  BETTING: "/betting"
 };
 
 // Define navigation items for the sidebar
@@ -41,5 +41,10 @@ export const NAVIGATION_ITEMS = [
     name: "Estatísticas",
     path: ROUTES.STATISTICS,
     icon: "bar-chart"
+  },
+  {
+    name: "Apostas",
+    path: ROUTES.BETTING,
+    icon: "ticket"
   }
 ];

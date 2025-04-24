@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +12,7 @@ import Modalities from "./pages/Modalities";
 import Scoring from "./pages/Scoring";
 import Scoreboard from "./pages/Scoreboard";
 import Statistics from "./pages/Statistics";
+import Betting from "./pages/Betting";
 import { ROUTES } from "./services/navigationService";
 
 const queryClient = new QueryClient();
@@ -32,6 +32,7 @@ const App = () => (
           <Route path={ROUTES.SCORING} element={<Scoring />} />
           <Route path={ROUTES.SCOREBOARD} element={<Scoreboard />} />
           <Route path={ROUTES.STATISTICS} element={<Statistics />} />
+          <Route path={ROUTES.BETTING} element={<Betting />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
