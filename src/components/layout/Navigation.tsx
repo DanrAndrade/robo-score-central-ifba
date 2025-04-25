@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { NAVIGATION_ITEMS } from "@/services/navigationService";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Home,
   Users,
@@ -12,6 +12,9 @@ import {
   Monitor,
   Menu,
   X,
+  BarChart,
+  LogOut,
+  Ticket
 } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -20,11 +23,21 @@ const iconMap: Record<string, React.ReactNode> = {
   settings: <Settings className="w-5 h-5" />,
   edit: <Edit className="w-5 h-5" />,
   monitor: <Monitor className="w-5 h-5" />,
+  "bar-chart": <BarChart className="w-5 h-5" />,
+  ticket: <Ticket className="w-5 h-5" />
 };
 
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear the auth state
+    localStorage.removeItem("isAuthenticated");
+    // Redirect to login
+    navigate("/login");
+  };
 
   return (
     <>
@@ -78,6 +91,17 @@ export function Navigation() {
             ))}
           </ul>
         </nav>
+
+        <div className="absolute bottom-8 left-0 w-full px-5">
+          <Button 
+            variant="outline" 
+            className="w-full flex items-center gap-2"
+            onClick={handleLogout}
+          >
+            <LogOut className="w-4 h-4" />
+            Sair
+          </Button>
+        </div>
       </div>
     </>
   );

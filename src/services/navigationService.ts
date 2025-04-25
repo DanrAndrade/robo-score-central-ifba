@@ -1,6 +1,8 @@
+
 // Define the application routes
 export const ROUTES = {
   HOME: "/",
+  LOGIN: "/login",
   DASHBOARD: "/dashboard",
   TEAMS: "/teams",
   MODALITIES: "/modalities",

@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import PageLayout from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,6 +18,8 @@ import {
 } from "@/components/ui/select";
 import { getTeams, getModalities } from "@/services/mockDataService";
 import { toast } from "@/hooks/use-toast";
+import { ROUTES } from "@/services/navigationService";
+import { ChevronLeft, Trophy } from "lucide-react";
 
 const Betting = () => {
   const [selectedTeam, setSelectedTeam] = useState("");
@@ -46,11 +47,11 @@ const Betting = () => {
   };
 
   return (
-    <PageLayout>
-      <div className="max-w-2xl mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle>Faça sua Aposta</CardTitle>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      <div className="max-w-2xl w-full">
+        <Card className="shadow-lg">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">Faça sua Aposta</CardTitle>
             <CardDescription>
               Escolha a equipe que você acha que vai ganhar em cada modalidade
             </CardDescription>
@@ -88,16 +89,30 @@ const Betting = () => {
               </Select>
             </div>
 
-            <div className="flex justify-end space-x-4">
-              <Link to="/scoreboard">
-                <Button variant="outline">Ver Placar</Button>
+            <div className="flex justify-between items-center pt-4">
+              <Link to={ROUTES.SCOREBOARD}>
+                <Button variant="outline" className="flex items-center gap-2">
+                  <ChevronLeft className="h-4 w-4" />
+                  Ver Placar
+                </Button>
               </Link>
-              <Button onClick={handleBet}>Confirmar Aposta</Button>
+              <Button onClick={handleBet} className="flex items-center gap-2">
+                <Trophy className="h-4 w-4" />
+                Confirmar Aposta
+              </Button>
             </div>
           </CardContent>
         </Card>
+        
+        <div className="mt-4 text-center">
+          <Link to={ROUTES.LOGIN}>
+            <Button variant="link" className="text-sm text-muted-foreground">
+              Área de administração
+            </Button>
+          </Link>
+        </div>
       </div>
-    </PageLayout>
+    </div>
   );
 };
 
